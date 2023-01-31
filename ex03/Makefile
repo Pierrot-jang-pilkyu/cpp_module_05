@@ -1,14 +1,18 @@
-NAME	=	ex03
+NAME	=	ex02
 CLANG	=	g++
 #CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
 CFLAGS	=	-Wall -Wextra -Werror
 
 SRCS	= 	./main.cpp \
 			./Bureaucrat.cpp \
-			./Form.cpp
+			./Form.cpp \
+			./PresidentialPardonForm.cpp \
+			./RobotomyRequestForm.cpp \
+			./ShrubberyCreationForm.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -f
+TREE	= *_shrubbery
 
 all : $(NAME)
 
@@ -20,6 +24,7 @@ $(NAME) : $(OBJS)
 
 clean : 
 	$(RM) $(OBJS)
+	$(RM) $(TREE)
 	@echo "Object files removed."
 
 fclean : clean
