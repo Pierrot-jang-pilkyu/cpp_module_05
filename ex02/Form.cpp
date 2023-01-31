@@ -1,5 +1,15 @@
 #include "Form.hpp"
 
+const char*	Form::IsNotSignedException::what(void) const throw()
+{
+	return ("This Form isn't sined.");
+}
+
+const char*	Form::ExecGradeNotMatchException::what(void) const throw()
+{
+	return ("Your grade is lower than this form execGrade.");
+}
+
 const char*	Form::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade too high.");
@@ -38,8 +48,6 @@ Form::Form(std::string _name, bool _sign, int _signgrade, int _execgrade)
 		throw Form::GradeTooLowhException();
 	this->sign = _sign;
 }
-
-Form::~Form(void) {}
 
 Form &Form::operator=(const Form &obj)
 {
@@ -92,6 +100,14 @@ bool	Form::beSigned(const Bureaucrat &obj)
 		return (this->sign = true);
 	else
 		return (this->sign = false);
+}
+
+void	Form::checkExeception(Bureaucrat const &obj) const
+{
+	if (!this->getSign())
+		throw Form::IsNotSignedException();
+	else if (this->getExecGrade() < obj.getGrade())
+		throw Form::ExecGradeNotMatchException();
 }
 
 std::ostream 	&operator<<(std::ostream &os, const Form &obj)

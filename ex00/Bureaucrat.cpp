@@ -63,12 +63,32 @@ int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::upGrade(void)
 {
-	++this->grade;
+	try
+	{
+		Bureaucrat temp("temp", this->grade - 1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "upGrade : " << e.what() << '\n';
+		returnr ;
+	}
+	
+	--this->grade;
 }
 
 void Bureaucrat::downGrade(void)
 {
-	--this->grade;
+	try
+	{
+		Bureaucrat temp("temp", this->grade + 1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "downGrade : " << e.what() << '\n';
+		return ;
+	}
+	
+	++this->grade;
 }
 
 std::ostream 	&operator<<(std::ostream &os, const Bureaucrat &obj)

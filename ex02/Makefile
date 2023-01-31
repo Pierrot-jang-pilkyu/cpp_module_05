@@ -1,4 +1,4 @@
-NAME	=	ex01
+NAME	=	ex02
 CLANG	=	g++
 #CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
 CFLAGS	=	-Wall -Wextra -Werror

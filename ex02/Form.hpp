@@ -12,13 +12,15 @@ private:
 	bool				sign;
 	const int			signGrade;
 	const int			execGrade;
+
+protected:
 	Form(void);
 
 public:
 	Form(const Form &obj);
 	Form(std::string _name, bool _sign, int _signgrade, int _execgrade);
 	Form	&operator=(const Form &obj);
-	~Form(void);
+	virtual ~Form(void) {};
 
 	std::string	getName(void) const;
 	bool		getSign(void) const;
@@ -27,7 +29,20 @@ public:
 	void		setSign(bool _sign);
 
 	bool	beSigned(const Bureaucrat &obj);
+	void	checkExeception(Bureaucrat const &obj) const;
 
+	virtual void	execute(Bureaucrat const & executor) const = 0;
+
+	class IsNotSignedException : public std::exception
+	{
+	public:
+		const char*	what(void) const throw();
+	};
+	class ExecGradeNotMatchException : public std::exception
+	{
+	public:
+		const char*	what(void) const throw();
+	};
 	class GradeTooHighException : public std::exception
 	{
 	public:

@@ -100,6 +100,11 @@ void	Bureaucrat::signForm(Form &obj)
 				<< " because \'" << obj.getName() << "\' grade too low." << std::endl;
 }
 
+void	executeForm(Form const & form)
+{
+	form.execute(*this);
+}
+
 std::ostream 	&operator<<(std::ostream &os, const Bureaucrat &obj)
 {
 	os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << ".";
