@@ -3,64 +3,63 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <iostream>
 
 int main(void)
 {
+	Intern someRandomIntern;
+
+	Form* scf;
+	scf = someRandomIntern.makeForm("shrubbery creation", "Bender");
+
+	Form* rrf;
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+
+	Form* ppf;
+	ppf = someRandomIntern.makeForm("presidential pardon", "Bender");
+
 	Bureaucrat	a("john", 45);
 	Bureaucrat	b("michael", 137);
 	Bureaucrat	c("Jack", 5);
 	// Bureaucrat	d;
 
-	ShrubberyCreationForm	s("Make tree");
-	RobotomyRequestForm		r("Run machine");
-	PresidentialPardonForm	p("Pardon him");
-
 	std::cout << std::endl;
-	std::cout << std::boolalpha << s << std::endl;
+	std::cout << std::boolalpha << *scf << std::endl;
 	std::cout << std::endl;
-	std::cout << std::boolalpha << r << std::endl;
+	std::cout << std::boolalpha << *rrf << std::endl;
 	std::cout << std::endl;
-	std::cout << std::boolalpha << p << std::endl;
+	std::cout << std::boolalpha << *ppf << std::endl;
 	std::cout << std::endl;
 	
-	s.beSigned(b);
-	r.beSigned(a);
-	p.beSigned(c);
-	
+	scf->beSigned(b);
+	rrf->beSigned(a);
+	ppf->beSigned(c);
+
 	std::cout << std::endl;
-	std::cout << std::boolalpha << s << std::endl;
+	std::cout << std::boolalpha << *scf << std::endl;
 	std::cout << std::endl;
-	std::cout << std::boolalpha << r << std::endl;
+	std::cout << std::boolalpha << *rrf << std::endl;
 	std::cout << std::endl;
-	std::cout << std::boolalpha << p << std::endl;
+	std::cout << std::boolalpha << *ppf << std::endl;
 	std::cout << std::endl;
 
-	b.executeForm(s);
+	b.executeForm(*scf);
 	system("cat michael_shrubbery");
 	std::cout << std::endl;
-	a.executeForm(r);
+	a.executeForm(*rrf);
 	std::cout << std::endl;
-	c.executeForm(p);
+	c.executeForm(*ppf);
+	std::cout << std::endl;
+
 	std::cout << std::endl;
 	try
 	{
-		Bureaucrat	e1("jenny", 6);
-		e1.executeForm(p);
+		Form* temp;
+		temp = someRandomIntern.makeForm("not exist", "test");
+		(void)temp;
 	}
-	catch (const Form::ExecGradeNotMatchException& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-	try 
-	{
-		Bureaucrat				e2("stella", 26);
-		PresidentialPardonForm	p2("Pardon test");
-		p2.beSigned(e2);
-		e2.executeForm(p2);
-	}
-	catch (const Form::IsNotSignedException& e)
+	catch (const Intern::NotExistFormNameException& e)
 	{
 		std::cout << e.what() << std::endl;
 	}

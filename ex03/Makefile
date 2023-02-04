@@ -1,4 +1,4 @@
-NAME	=	ex02
+NAME	=	ex03
 CLANG	=	g++
 #CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
 CFLAGS	=	-Wall -Wextra -Werror
@@ -8,7 +8,8 @@ SRCS	= 	./main.cpp \
 			./Form.cpp \
 			./PresidentialPardonForm.cpp \
 			./RobotomyRequestForm.cpp \
-			./ShrubberyCreationForm.cpp
+			./ShrubberyCreationForm.cpp \
+			./Intern.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -f
