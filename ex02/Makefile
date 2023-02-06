@@ -1,7 +1,6 @@
 NAME	=	ex02
-CLANG	=	g++
-#CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
-CFLAGS	=	-Wall -Wextra -Werror
+CLANG	=	clang++
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS	= 	./main.cpp \
 			./Bureaucrat.cpp \
